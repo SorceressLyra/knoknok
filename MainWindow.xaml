@@ -1,0 +1,32 @@
+﻿<Window x:Class="knoknok.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:local="clr-namespace:knoknok"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Visibility="Hidden"
+        Closing="HandleClosing">
+    <Grid>
+        <Button Click="KnockButtonClick">Knock knock!</Button>
+        
+        <tb:TaskbarIcon
+            IconSource="images/bell.ico"
+            MenuActivation="LeftOrRightClick">
+        
+            
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Knock knock!" Click="KnockButtonClick"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Close knoknok" Click="CloseApplication"></MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+ 
+        </tb:TaskbarIcon>
+            
+            
+            
+    </Grid>
+</Window>

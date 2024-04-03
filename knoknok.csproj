@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <ApplicationIcon>images\bell.ico</ApplicationIcon>
+		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
+      <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="images\bell.ico" />
+      <Resource Include="images\bell.ico">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Audio\honk.wav" />
+      <Content Include="Audio\honk.wav">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Audio\confirm.wav" />
+      <Content Include="Audio\confirm.wav">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Audio\tada.wav" />
+      <Content Include="Audio\tada.wav">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="images\kirby.gif" />
+      <Content Include="images\kirby.gif">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+</Project>
