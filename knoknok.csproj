@@ -17,22 +17,18 @@
 
     <ItemGroup>
       <None Remove="images\bell.ico" />
+      <None Remove="images\caPlink.gif" />
       <Resource Include="images\bell.ico">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <None Remove="Audio\honk.wav" />
-      <Content Include="Audio\honk.wav">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="Audio\confirm.wav" />
       <Content Include="Audio\confirm.wav">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <None Remove="Audio\tada.wav" />
-      <Content Include="Audio\tada.wav">
+      <None Remove="images\kirby.gif" />
+      <Content Include="images\caPlink.gif">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <None Remove="images\kirby.gif" />
       <Content Include="images\kirby.gif">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>

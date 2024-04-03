@@ -13,19 +13,14 @@ namespace knoknok;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private byte id;
-    private int port = 11000;
+
     
     public MainWindow()
     {
         InitializeComponent();
 
-        //get id
-        Random rnd = new Random();
-        id = (byte)rnd.Next(1,255);
-        
         //server thread
-        Thread serverThread = new Thread(() => Server(port, id));
+        Thread serverThread = new Thread(() => Server(Info.Port, Info.ID));
         serverThread.IsBackground = true;
         serverThread.Start();
 
@@ -34,6 +29,8 @@ public partial class MainWindow : Window
     private void Server(int port, byte id)
     {
         UdpClient udpServer = new UdpClient(port);
+
+        KnockAcknowledge();
 
         Debug.WriteLine("Starting server");
         while (true)
@@ -47,6 +44,9 @@ public partial class MainWindow : Window
 
             if (data[0] == (byte)255 && data[1] != id)
                 ReceiveKnock();
+
+            if (data[0] == (byte)1 && data[1] != id)
+                KnockAcknowledge();
         }
     }
 
@@ -57,7 +57,7 @@ public partial class MainWindow : Window
         client.Connect(ep);
 
         // send data
-        client.Send(new byte[] { 255, id }, 2);
+        client.Send(new byte[] { 255, Info.ID }, 2);
         Debug.WriteLine("Sending knock");
         SendKnock();
     }
@@ -93,6 +93,17 @@ public partial class MainWindow : Window
             .AddText("Knock Knock!")
             .AddText("You sent a knock")
             .AddAudio(new Uri("ms-winsoundevent:Notification.Reminder"))
+            .Show(); // Not seeing the Show() method? Make sure you have version 7.0, and if you're using .NET 6 (or later), then your TFM must be net6.0-windows10.0.17763.0 or greater
+    }
+
+    private static void KnockAcknowledge()
+    {
+        // Requires Microsoft.Toolkit.Uwp.Notifications NuGet package version 7.0 or greater
+        new ToastContentBuilder()
+            .AddText("Got it!")
+            .AddText("They got your knock! Yahoo!!!")
+            .AddInlineImage(new Uri(Path.GetFullPath("images/caPlink.gif")))
+            .AddAudio(new Uri("ms-winsoundevent:Notification.IM"))
             .Show(); // Not seeing the Show() method? Make sure you have version 7.0, and if you're using .NET 6 (or later), then your TFM must be net6.0-windows10.0.17763.0 or greater
     }
 
