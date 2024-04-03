@@ -26,7 +26,7 @@ public partial class MainWindow : Window
         
         //server thread
         Thread serverThread = new Thread(() => Server(port, id));
-        //serverThread.IsBackground = true;
+        serverThread.IsBackground = true;
         serverThread.Start();
 
     }

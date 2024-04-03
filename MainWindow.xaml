@@ -15,7 +15,6 @@
             IconSource="images/bell.ico"
             MenuActivation="LeftOrRightClick">
         
-            
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Knock knock!" Click="KnockButtonClick"></MenuItem>

@@ -18,17 +18,17 @@ public partial class App : Application
     private Mutex instanceMutex;
     protected override void OnStartup(StartupEventArgs e)
     {
-        //bool createdNew = false;
+        bool createdNew = false;
 
-        //instanceMutex = new Mutex(true, "knoknok app instance", out createdNew);
+        instanceMutex = new Mutex(true, "knoknok app instance", out createdNew);
 
-        //if (!createdNew)
-        //{
-        //    instanceMutex = null;
-        //    MessageBox.Show("Instance of knoknok already active");
-        //    Application.Current.Shutdown();
-        //    return;
-        //}
+        if (!createdNew)
+        {
+            instanceMutex = null;
+            MessageBox.Show("Instance of knoknok already active");
+            Application.Current.Shutdown();
+            return;
+        }
     }
     public App()
     {
