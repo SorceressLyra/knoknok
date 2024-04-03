@@ -37,6 +37,11 @@ public partial class MainWindow : Window
             byte[] data = udpServer.Receive(ref remoteEP);
             Debug.WriteLine("received data from " + remoteEP.ToString());
 
+            for (int i = 0; i < data.Length; i++)
+            {
+                Debug.WriteLine(data[i]);
+            }
+
             if (data.Length != 2 || data[1] == Info.ID)
                 continue;
 

@@ -31,6 +31,10 @@ public partial class App : Application
             MessageBox.Show("Instance of knoknok already active");
             Environment.Exit(0);
         }
+        else
+        {
+            Info.Start();
+        }
     }
     public App()
     {
