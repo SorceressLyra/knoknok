@@ -30,8 +30,6 @@ public partial class MainWindow : Window
     {
         UdpClient udpServer = new UdpClient(port);
 
-        KnockAcknowledge();
-
         Debug.WriteLine("Starting server");
         while (true)
         {

@@ -8,6 +8,7 @@ using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.Toolkit.Uwp.Notifications;
 using System.Net.Sockets;
 using System.Net;
+using System.Diagnostics;
 
 
 namespace knoknok;
@@ -56,6 +57,7 @@ public partial class App : Application
                     IPEndPoint ep = new IPEndPoint(IPAddress.Broadcast, 11000); // endpoint where server is listening
                     client.Connect(ep);
 
+                    Debug.WriteLine("Sending acknowledgment");
                     // send data
                     client.Send(new byte[] { 1, Info.ID }, 2);
                 }
