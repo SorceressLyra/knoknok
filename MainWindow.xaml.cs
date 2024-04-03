@@ -42,11 +42,11 @@ public partial class MainWindow : Window
             byte[] data = udpServer.Receive(ref remoteEP); // listen on port 11000
             Debug.WriteLine("receive data from " + remoteEP.ToString());
 
-            //if (data.Length != 2)
-            //    return;
-            
-            //if(data[0] == (byte)255 && data[1] != id)
-            //    ReceiveKnock();
+            if (data.Length != 2)
+                return;
+
+            if (data[0] == (byte)255 && data[1] != id)
+                ReceiveKnock();
         }
     }
 
