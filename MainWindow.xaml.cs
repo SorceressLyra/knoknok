@@ -20,30 +20,30 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         //server thread
-        Thread serverThread = new Thread(() => Server(Info.Port, Info.ID));
+        Thread serverThread = new Thread(() => Server());
         serverThread.IsBackground = true;
         serverThread.Start();
 
     }
 
-    private void Server(int port, byte id)
+    private void Server()
     {
-        UdpClient udpServer = new UdpClient(port);
+        UdpClient udpServer = new UdpClient(Info.Port);
 
         Debug.WriteLine("Starting server");
         while (true)
         {
             var remoteEP = new IPEndPoint(IPAddress.Any, 11000); 
-            byte[] data = udpServer.Receive(ref remoteEP); // listen on port 11000
-            Debug.WriteLine("receive data from " + remoteEP.ToString());
+            byte[] data = udpServer.Receive(ref remoteEP);
+            Debug.WriteLine("received data from " + remoteEP.ToString());
 
-            if (data.Length != 2)
-                return;
+            if (data.Length != 2 || data[1] == Info.ID)
+                continue;
 
-            if (data[0] == (byte)255 && data[1] != id)
+            if (data[0] == (byte)255)
                 ReceiveKnock();
 
-            if (data[0] == (byte)1 && data[1] != id)
+            if (data[0] == (byte)1)
                 KnockAcknowledge();
         }
     }

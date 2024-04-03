@@ -29,8 +29,7 @@ public partial class App : Application
         {
             instanceMutex = null;
             MessageBox.Show("Instance of knoknok already active");
-            Application.Current.Shutdown();
-            return;
+            Environment.Exit(0);
         }
     }
     public App()
